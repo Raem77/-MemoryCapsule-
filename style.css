@@ -349,7 +349,6 @@ body.boxes-page {
 
 .section-open-btn {
   font-family: 'Comico', serif;
-  /* ...rest of your styles */
 }
 
 /* delete button — sits in the top-right corner of each box card */
@@ -501,7 +500,7 @@ body.boxes-page {
 body.about-page {
     margin: 0;
     min-height: 100vh;
-    background: rgba(255, 255, 255, 0.299);
+    background: rgba(255, 255, 255, 0.285);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -529,7 +528,7 @@ body.about-page {
 
 .about-content {
     width: 100%;
-    max-width: 580px;
+    max-width: 650px;
     padding: 0 40px;
     box-sizing: border-box;
 }
@@ -552,7 +551,7 @@ body.about-page {
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.35);
+    color: rgba(0, 0, 0, 0.466);
     font-weight: normal;
     margin: 0 0 16px;
 }
@@ -560,7 +559,7 @@ body.about-page {
 .about-text {
     font-family: 'JetBrains', monospace;
     font-size: 0.92rem;
-    color: rgba(0, 0, 0, 0.65);
+    color: rgba(0, 0, 0, 0.628);
     line-height: 1.9;
     margin: 0;
 }
