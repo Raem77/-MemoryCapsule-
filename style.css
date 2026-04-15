@@ -1,0 +1,1448 @@
+/* ---------------------------------------- INDEX PAGE ------------------------------------------ */
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    overflow-x: hidden;
+}
+
+.eye-link {
+    display: block;
+    width: 790px;
+    height: 562px;
+    background-image: url('eyes/eye_open.png');
+    background-size: cover;
+    transition: background-image 0.3s ease-in-out;
+}
+
+.eye-link:hover {
+    background-image: url('eyes/eye_closed.png');
+}
+
+/* body no scroll (ONLY index page) */
+body.index {
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------- BOX PAGE ------------------------------------------ */
+
+/*head*/
+
+.site-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 8fr 1fr 1fr;  /* column /column/ head/ column/ column */
+    align-items: center;
+    gap: 0 10px;
+    padding: 88px 70px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.left-col-1  { text-align: right; }
+.left-col-2  { text-align: right; }
+.center-col  { text-align: center; }
+.right-col-1 { text-align: left; }
+.right-col-2 { text-align: left; }
+
+.center-col h1 {
+    font-family: 'Comico', sans-serif;
+    font-size: 80px;       
+    margin: 0 0 10px;
+}
+
+.left-col-1 p, .left-col-2 p,
+.right-col-1 p, .right-col-2 p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;       
+    color: #706f6f;
+    margin: 0;
+}
+
+/* intro section */
+.intro {
+    width: 100%;
+    max-width: 1200px;
+    padding: 48px 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    color:  #706f6f;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    text-align: left;
+    display: grid;           
+    grid-template-columns: 0.25fr 4fr;  
+    gap: 10px;      
+    align-items: start;        
+}
+
+.intro-col-1 {
+    font-size: 13px;   
+    margin: 0;
+    text-align: left;
+}
+
+.intro-col-2 {
+    font-size: 20px;    
+    margin: 0;
+    color: #000000;
+    font-family: 'JetBrains Mono', monospace, bold; 
+}
+
+
+/*boxes*/
+
+/* hide the navigation boxes (remove this line to bring them back) */
+.boxes-container:not(.boxes-container--scroll) {
+    display: none;
+}
+
+body.boxes-page {
+    margin: 0;
+    min-height: 100vh;      
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+}
+
+.boxes-container {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.boxes-container--scroll {
+    flex: 0;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.box:hover {
+    transform: translateY(-6px);
+}
+
+.box-images {
+    position: relative;
+    width: 220px;
+    height: 220px;
+}
+
+.box-images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.15s ease;
+}
+
+.box-closed { opacity: 1; }
+.box-mid    { opacity: 0; }
+.box-open   { opacity: 0; }
+
+.box:hover .box-closed { opacity: 0; }
+.box:hover .box-mid    { opacity: 0; transition: opacity 0.15s ease 0.15s; }
+.box:hover .box-open   { opacity: 1; transition-delay: 0.15s; }
+
+.box-label {
+    font-family:  'Comico', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* zoom overlay — covers screen when a box is clicked */
+.zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: white;
+    transform: scale(0);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.zoom-overlay.zooming {
+    animation: zoomIn 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0);  opacity: 1; }
+    to   { transform: scale(40); opacity: 1; }
+}
+
+/* ---- TINY PLANET ---- */
+.tiny-planet-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#tinyPlanet {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-image: url('pano/1=/tiny_planet.jpg');
+    background-size: cover;
+    background-position: center;
+    display: block;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.tiny-planet-link:hover #tinyPlanet {
+    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.25);
+    transform: scale(1.06);
+}
+
+.tiny-planet-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);
+    transition: color 0.2s ease;
+}
+
+.tiny-planet-link:hover .tiny-planet-label {
+    color: rgba(0,0,0,0.7);
+}
+
+/* --------------------------------------------- scroll sections ------------------------------------------------------------ */
+
+/* flex so image and text sit side by side */
+
+/* replaced fixed px columns with flexible fr units so the grid
+   adapts to screen size */
+
+.scroll-section {
+    width: 100%;
+    max-width: 1400px;
+    padding: 300px 0px;
+    border-top: 1px solid #7b7b7b;
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr;  
+    align-items: start;
+    gap: 40px;
+}
+
+
+/* right column */
+/* CHANGED: added .scroll-section-mini-gallery-wrap -> fixed-height anchor
+   that holds space in the grid. The gallery itself is position:absolute so
+   it floats over content below and never pushes the row down on hover */
+.scroll-section-mini-gallery-wrap {
+    position: relative;
+    width: 416px;
+    height: 200px;      /* fixed — row height never changes */
+    overflow: visible;
+}
+
+.scroll-section-mini-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 416px;
+    overflow: visible;
+}
+
+.scroll-section-mini-gallery img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transition: top       0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
+                left      0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
+                transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+/* ---- PILE (default) ---- */
+.scroll-section-mini-gallery img:nth-child(1) { top: 44px; left: 38px; transform: rotate(-7deg); z-index: 6; }
+.scroll-section-mini-gallery img:nth-child(2) { top: 50px; left: 52px; transform: rotate(5deg);  z-index: 5; }
+.scroll-section-mini-gallery img:nth-child(3) { top: 40px; left: 30px; transform: rotate(-2deg); z-index: 4; }
+.scroll-section-mini-gallery img:nth-child(4) { top: 58px; left: 46px; transform: rotate(9deg);  z-index: 3; }
+.scroll-section-mini-gallery img:nth-child(5) { top: 36px; left: 56px; transform: rotate(-5deg); z-index: 2; }
+.scroll-section-mini-gallery img:nth-child(6) { top: 62px; left: 34px; transform: rotate(3deg);  z-index: 1; }
+
+/* ---- GRID (hover) — CHANGED: removed duplicate conflicting rules,
+ clean 2-column layout at 200px + 8px gap ---- */
+.scroll-section-mini-gallery:hover img:nth-child(1) { top: 0;    left: 0;     transform: rotate(0deg); z-index: 1; transition-delay: 0s;    }
+.scroll-section-mini-gallery:hover img:nth-child(2) { top: 0;    left: 208px; transform: rotate(0deg); z-index: 1; transition-delay: 0.04s; }
+.scroll-section-mini-gallery:hover img:nth-child(3) { top: 208px; left: 0;    transform: rotate(0deg); z-index: 1; transition-delay: 0.08s; }
+.scroll-section-mini-gallery:hover img:nth-child(4) { top: 208px; left: 208px; transform: rotate(0deg); z-index: 1; transition-delay: 0.12s; }
+.scroll-section-mini-gallery:hover img:nth-child(5) { top: 416px; left: 0;    transform: rotate(0deg); z-index: 1; transition-delay: 0.16s; }
+.scroll-section-mini-gallery:hover img:nth-child(6) { top: 416px; left: 208px; transform: rotate(0deg); z-index: 1; transition-delay: 0.2s;  }
+
+/*-------------------*/
+
+.scroll-section-img {
+    width: 220px;
+    height: 220px;
+    flex-shrink: 0;          /* don't let it squish when text is long */
+    object-fit: contain;
+}
+
+/* wrap title + text so they stack vertically on the right side */
+.scroll-section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.scroll-section-title {
+    font-family: 'Comico', sans-serif;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0;              
+}
+
+.scroll-section-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Open archive button */
+.section-open-btn {
+  display: block;
+  margin-left: auto;          /* pushes it to the right */
+  width: fit-content;
+  margin-top: 1rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: black;           
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.section-open-btn:hover {
+  opacity: 0.5;
+}
+
+.section-open-btn {
+  font-family: 'Comico', serif;
+  /* ...rest of your styles */
+}
+
+/* delete button — sits in the top-right corner of each box card */
+.user-box {
+    position: relative; /* needed so the delete button can anchor to the card */
+}
+
+.user-box-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1rem;
+    color: rgba(0,0,0,0.2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 6px;
+    opacity: 0;                          /* hidden until the card is hovered */
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+.user-box:hover .user-box-delete { opacity: 1; }
+.user-box-delete:hover            { color: rgba(0,0,0,0.75); }
+
+/*---------------------------------------- ABOUT PANEL ------------------------------------------*/
+.about-btn {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    font-family: 'comico', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.68);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.2s ease;
+    padding: 0;
+}
+
+.about-btn:hover {
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.about-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;             
+    height: 100vh;            
+    background: rgba(255, 255, 255, 0.874);
+    border-left: 1px solid rgba(0, 0, 0, 0.08); 
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10001;
+    overflow-y: auto;
+}
+
+.about-panel.open {
+    transform: translateX(0);
+}
+
+.about-panel-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.35);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.about-panel-close:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.about-panel-content {
+    padding: 64px 36px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.about-panel-name {
+    font-family:  'Comico', sans-serif;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.85);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.about-panel-statement {
+    font-family: 'JetBrains', monospace;
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.about-panel-desc {
+    font-family: 'JetBrains', monospace;
+    font-size: 0.82rem;
+    color: rgba(0, 0, 0, 0.45);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.about-panel-more {
+    font-family:  'Comico', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    margin-top: 8px;
+    transition: color 0.2s ease;
+}
+
+.about-panel-more:hover {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10000;
+    transition: opacity 0.4s ease;
+}
+
+.about-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+
+/* ---------------------------------------- ABOUT PAGE ------------------------------------------ */
+body.about-page {
+    margin: 0;
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.299);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 0;
+    box-sizing: border-box;
+}
+
+.about-back {
+    position: fixed;
+    top: 24px;
+    left: 28px;
+    font-family: 'Comico', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+    z-index: 100;
+    transition: color 0.2s ease;
+}
+
+.about-back:hover {
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.about-content {
+    width: 100%;
+    max-width: 580px;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.about-name {
+    font-family: 'Comico', sans-serif;
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: normal;
+    margin: 0 0 56px;
+    letter-spacing: 0.02em;
+}
+
+.about-section {
+    margin-bottom: 48px;
+}
+
+.about-section-title {
+    font-family: 'JetBrains', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.35);
+    font-weight: normal;
+    margin: 0 0 16px;
+}
+
+.about-text {
+    font-family: 'JetBrains', monospace;
+    font-size: 0.92rem;
+    color: rgba(0, 0, 0, 0.65);
+    line-height: 1.9;
+    margin: 0;
+}
+
+.about-text a {
+    color: rgba(0, 0, 0, 0.65);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.about-text a:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+
+/* ------------------ BACK BUTTON (archive -> boxes) ----------------------- */
+
+.back-btn {
+    position: fixed;
+    top: 24px;
+    right: 30px;
+    z-index: 15001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+}
+
+.back-btn-img {
+    width: 110px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.back-btn:hover .back-btn-img {
+    opacity: 0.75;
+}
+
+/* ------------------ hide back button when modal opens ------------------------- */
+
+body.modal-open .back-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------- ARCHIVE PAGE ------------------------------------------ */
+
+body:not(.index):not(.boxes-page):not(.about-page) {
+    background-color: black;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* blurs the archive container (images) when a modal is open */
+.archive-container.blurred {
+    filter: blur(6px);
+}
+
+/* locks scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* dedicated blur layer for the background image only */
+.bg-blur {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.bg-blur.active {
+    opacity: 1;
+}
+
+.archive-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
+    transition: filter 0.3s ease;
+    box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.6);
+}
+
+
+/* wrapper - JavaScript */
+.image-wrapper {
+    position: absolute;
+    cursor: move;
+}
+
+/* image style */
+.memory {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* ---------------------------------------- IMAGES---------------------------------------- */
+
+/* ---- FRAGMENTS ---- */
+
+.m1  { width: 360px; top: 2vh;  left: 5vw;  }
+.m2  { width: 180px; top: 4vh;  left: 36vw; }
+.m3  { width: 400px; top: 3vh;  left: 56vw; }
+.m4  { width: 150px; top: 42vh; left: 6vw;  }
+.m5  { width: 380px; top: 36vh; left: 24vw; }
+.m6  { width: 200px; top: 40vh; left: 60vw; }
+.m7  { width: 420px; top: 38vh; left: 74vw; }
+.m42 { width: 280px; top: 68vh; left: 6vw;  }
+.m43 { width: 160px; top: 70vh; left: 30vw; }
+.m44 { width: 370px; top: 66vh; left: 48vw; }
+.m45 { width: 210px; top: 72vh; left: 72vw; }
+.m46 { width: 320px; top: 18vh; left: 18vw; }
+
+
+/* ---- WOA ---- */
+
+.m8  { width: 320px; top: 2vh;  left: 5vw;  }
+.m9  { width: 160px; top: 3vh;  left: 30vw; }
+.m10 { width: 380px; top: 4vh;  left: 48vw; }
+.m11 { width: 190px; top: 2vh;  left: 72vw; }
+.m12 { width: 280px; top: 22vh; left: 6vw;  }
+.m13 { width: 140px; top: 20vh; left: 28vw; }
+.m14 { width: 360px; top: 24vh; left: 44vw; }
+.m15 { width: 170px; top: 21vh; left: 72vw; }
+.m16 { width: 400px; top: 44vh; left: 5vw;  }
+.m17 { width: 155px; top: 46vh; left: 38vw; }
+.m18 { width: 340px; top: 42vh; left: 56vw; }
+.m19 { width: 145px; top: 45vh; left: 78vw; }
+.m20 { width: 300px; top: 66vh; left: 6vw;  }
+.m21 { width: 175px; top: 68vh; left: 30vw; }
+.m22 { width: 390px; top: 64vh; left: 48vw; }
+.m23 { width: 220px; top: 70vh; left: 76vw; }
+
+
+/* ---- PHOTOS ---- */
+
+.m24 { width: 380px; top: 2vh;  left: 5vw;  }
+.m25 { width: 170px; top: 4vh;  left: 34vw; }
+.m26 { width: 350px; top: 3vh;  left: 52vw; }
+.m27 { width: 200px; top: 2vh;  left: 76vw; }
+.m28 { width: 160px; top: 26vh; left: 5vw;  }
+.m29 { width: 400px; top: 24vh; left: 20vw; }
+.m30 { width: 185px; top: 28vh; left: 54vw; }
+.m31 { width: 370px; top: 22vh; left: 68vw; }
+.m32 { width: 260px; top: 48vh; left: 5vw;  }
+.m33 { width: 145px; top: 50vh; left: 30vw; }
+.m34 { width: 390px; top: 46vh; left: 46vw; }
+.m35 { width: 175px; top: 52vh; left: 74vw; }
+.m36 { width: 310px; top: 68vh; left: 5vw;  }
+.m37 { width: 155px; top: 70vh; left: 32vw; }
+.m38 { width: 360px; top: 66vh; left: 50vw; }
+.m39 { width: 190px; top: 72vh; left: 76vw; }
+.m40 { width: 420px; top: 14vh; left: 12vw; }
+.m41 { width: 165px; top: 38vh; left: 8vw;  }
+
+
+/* ---------------------------------------- MODAL INFO ------------------------------------------ */
+
+.modal-info {
+  position: fixed;              
+  top: 50%;                     
+  transform: translateY(-50%);  
+  left: 50%;                    
+  width: 45%;                   
+  padding: 48px;                
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;       
+  gap: 16px;
+  z-index: 20001;             
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-info.visible {
+  opacity: 1;
+}
+
+/* TITLE  */
+.modal-title {
+  font-family: 'Comico', sans-serif;
+  font-size: 1.6rem;           
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+}
+
+/* DATE */
+.modal-date {
+  font-family: 'JetBrains', monospace;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+
+/* DESCRIPTION */
+.modal-desc {
+  font-family: 'JetBrains', monospace;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  width: 100%;
+  margin-top: 8px;
+}
+
+
+/* ---------------------------------------- MODAL WINDOW (archove) ------------------------------------------ */
+
+.image-wrapper.expanded {
+  position: fixed;
+  top: 0;                     
+  left: 0;                      /* anchored to left edge */
+  width: 100vw;
+  height: 100vh;
+  z-index: 20000;
+  cursor: default;
+  overflow: hidden;
+  background-image: url('modal-bg.png');   /* background image — replace with filename */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-wrapper.expanded .memory {
+  position: absolute;         
+  top: 5vh;                    
+  left: 4vw;                   
+  width: 42vw;                 
+  max-height: 50vh;            
+  height: auto;
+  object-fit: contain;          
+  display: block;
+  margin: 0;                   
+}
+
+.image-wrapper.expanded::after {
+    content: "×";
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.826);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 20002;
+}
+
+.image-wrapper.expanded::after:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+
+/* ---------------------------------------- EYE HOME ------------------------------------------ */
+
+/* hide eye button when modal opens */
+body.modal-open .reset-eye {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reset-eye {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 90px;
+  cursor: pointer;
+  z-index: 15000;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.reset-eye:hover {
+  transform: scale(1.05);
+}
+
+.image-wrapper {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --------------------------------- debug overlay ---------------------------- */
+body.debug::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image:
+    linear-gradient(to right, rgba(250, 0, 0, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 255, 0.25) 1px, transparent 1px);
+  background-size: 40px 100%, 100% 40px;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/*============================================================================================
+                                       PHONE DIMENSION
+==============================================================================================
+
+/* ----------===== max = screens -> 768px wide (phones)--------------- */
+@media (max-width: 768px) {
+
+/* ---------------------------------------- INDEX PAGE ------------------------------------------ */
+
+  .eye-link {
+    width: 90vw;
+    height: 64vw;
+  }
+
+/* ---------------------------------------- BOX PAGE ------------------------------------------ */
+
+  .boxes-container {
+    flex-direction: column; /* vertical box stack */
+    gap: 40px;
+    padding-bottom: 80px;
+    overflow-y: auto;
+    /* page scroll vertically */
+  }
+
+  .box-images {
+    width: 160px;
+    height: 160px;
+  }
+
+  .box-label {
+    font-size: 0.75rem;
+  }
+
+  .about-btn {
+    right: auto;
+    left: 28px;
+  }
+
+  .about-panel {
+    width: 100vw;
+  }
+
+
+  /* ---------------------------------------- ARCHIVE PAGE ------------------------------------------ */
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .reset-eye {
+    width: 140px;
+    top: -10px;
+    left: -28px;
+  }
+
+
+  /* ------------------------- IMAGE PLACEMENTS (m) -----------------------*/
+
+  /* ---- FRAGMENTS ---- */
+  .m1  { width: 140px; top: 3vh;  left: 5vw;  }
+  .m2  { width: 90px;  top: 5vh;  left: 36vw; }
+  .m3  { width: 160px; top: 4vh;  left: 58vw; }
+  .m4  { width: 80px;  top: 36vh; left: 6vw;  }
+  .m5  { width: 150px; top: 30vh; left: 28vw; }
+  .m6  { width: 95px;  top: 34vh; left: 62vw; }
+  .m7  { width: 160px; top: 32vh; left: 70vw; }
+  .m42 { width: 120px; top: 62vh; left: 6vw;  }
+  .m43 { width: 80px;  top: 64vh; left: 32vw; }
+  .m44 { width: 145px; top: 60vh; left: 50vw; }
+  .m45 { width: 90px;  top: 66vh; left: 72vw; }
+  .m46 { width: 130px; top: 18vh; left: 18vw; }
+
+  /* ---- WOA ---- */
+  .m8  { width: 120px; top: 3vh;  left: 5vw;  }
+  .m9  { width: 80px;  top: 4vh;  left: 30vw; }
+  .m10 { width: 140px; top: 5vh;  left: 50vw; }
+  .m11 { width: 85px;  top: 3vh;  left: 74vw; }
+  .m12 { width: 110px; top: 22vh; left: 6vw;  }
+  .m13 { width: 75px;  top: 20vh; left: 28vw; }
+  .m14 { width: 135px; top: 24vh; left: 46vw; }
+  .m15 { width: 80px;  top: 21vh; left: 72vw; }
+  .m16 { width: 145px; top: 42vh; left: 5vw;  }
+  .m17 { width: 75px;  top: 44vh; left: 38vw; }
+  .m18 { width: 130px; top: 40vh; left: 58vw; }
+  .m19 { width: 70px;  top: 45vh; left: 78vw; }
+  .m20 { width: 115px; top: 62vh; left: 6vw;  }
+  .m21 { width: 80px;  top: 64vh; left: 30vw; }
+  .m22 { width: 145px; top: 60vh; left: 48vw; }
+  .m23 { width: 90px;  top: 66vh; left: 74vw; }
+
+  /* ---- PHOTOS ---- */
+  .m24 { width: 145px; top: 3vh;  left: 5vw;  }
+  .m25 { width: 80px;  top: 5vh;  left: 34vw; }
+  .m26 { width: 135px; top: 4vh;  left: 54vw; }
+  .m27 { width: 85px;  top: 3vh;  left: 76vw; }
+  .m28 { width: 75px;  top: 24vh; left: 5vw;  }
+  .m29 { width: 150px; top: 22vh; left: 22vw; }
+  .m30 { width: 85px;  top: 26vh; left: 56vw; }
+  .m31 { width: 140px; top: 20vh; left: 70vw; }
+  .m32 { width: 110px; top: 44vh; left: 5vw;  }
+  .m33 { width: 75px;  top: 46vh; left: 30vw; }
+  .m34 { width: 145px; top: 42vh; left: 48vw; }
+  .m35 { width: 80px;  top: 48vh; left: 74vw; }
+  .m36 { width: 120px; top: 64vh; left: 5vw;  }
+  .m37 { width: 75px;  top: 66vh; left: 32vw; }
+  .m38 { width: 135px; top: 62vh; left: 50vw; }
+  .m39 { width: 85px;  top: 68vh; left: 76vw; }
+  .m40 { width: 155px; top: 14vh; left: 12vw; }
+  .m41 { width: 80px;  top: 36vh; left: 8vw;  }
+
+
+/* ---------------------------------------- MODAL INFO ------------------------------------------ */
+
+  .image-wrapper.expanded {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .image-wrapper.expanded .memory {
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-height: 40vh;
+  }
+
+  .modal-info {
+    top: 52vh;
+    left: 5vw;
+    transform: none;
+    width: 90vw;
+    padding: 24px 20px;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+    white-space: normal;
+    /* title wraps to a second line if too long */
+  }
+
+}
+
+
+/* --------------- max = screens -> (phones under 380px) -------------*/
+@media (max-width: 380px) {
+
+  .box-images {
+    width: 130px;
+    height: 130px;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+  }
+
+}
+
+/* ---------------------------------------- USER BOXES SECTION ---------------------------------------- */
+
+.user-boxes-section {
+    width: 90%;
+    max-width: 1200px;
+    padding: 80px 0;
+    border-top: 1px solid #ddd;
+}
+
+.user-boxes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.user-boxes-title {
+    font-family: 'Comico', sans-serif;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: rgba(0,0,0,0.8);
+    margin: 0;
+}
+
+/* the + Create a box button */
+.create-box-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: rgba(0,0,0,0.45);
+    background: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.create-box-btn:hover {
+    color: rgba(0,0,0,0.8);
+    border-color: rgba(0,0,0,0.5);
+}
+
+/* grid of user-created boxes */
+.user-boxes-grid {
+    display: flex;
+    flex-wrap: wrap;        /* wraps to next row when full */
+    gap: 60px;
+}
+
+.user-boxes-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #aaa;
+    margin: 0;
+}
+
+/* each rendered user box */
+.user-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.user-box-images {
+    position: relative;
+    width: 220px;
+    height: 220px;
+}
+
+.user-box-images img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    transition: opacity 0.15s ease;
+}
+
+.user-box-closed { opacity: 1; }
+.user-box-open   { opacity: 0; }
+
+.user-box:hover .user-box-closed { opacity: 0; }
+.user-box:hover .user-box-open   { opacity: 1; }
+
+.user-box-label {
+    font-family: 'Comico', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+}
+
+/* ---------------------------------------- CREATE BOX MODAL ---------------------------------------- */
+/* ---- VIEW BOX MODAL ---- */
+
+/* overlay — matches .modal-overlay from style-room.css */
+.view-box-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.15);       /* same light dim as room modal */
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10002;
+    transition: opacity 0.3s ease;
+}
+.view-box-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* modal card — matches .modal from style-room.css,
+   wider than the room modal to fit the image gallery */
+.view-box-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.97); /* matches room modal entry state */
+    width: min(680px, 90vw);
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.1);           
+    padding: 52px 48px 44px;                       
+    z-index: 10003;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+}
+.view-box-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* close button — matches .modal-close from style-room.css */
+.view-box-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 1.6rem;
+    color: rgba(0,0,0,0.35);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.view-box-close:hover { color: rgba(0,0,0,0.8); }
+
+/* header row — box illustration + title side by side */
+.view-box-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+/* small "tag" label above the title — matches .modal-tag */
+.view-box-modal-header::before {
+    content: 'Memory Box';
+    display: block;
+    position: absolute;
+    top: 52px;                           /* aligns with modal top padding */
+    left: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);             /* matches .modal-tag colour */
+}
+
+/* box open illustration */
+.view-box-img {
+    width: 52px;
+    height: auto;
+    flex-shrink: 0;
+    margin-top: 18px;                    /* pushes it below the tag label */
+}
+
+/* box name — matches .modal-title from style-room.css */
+.view-box-title {
+    font-family: 'Comico', serif;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: rgba(0,0,0,0.85);
+    margin: 0;
+    margin-top: 18px;                    /* aligns with the box illustration */
+}
+
+/* divider between header and gallery */
+.view-box-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 6px;
+    border-top: 1px solid rgba(0,0,0,0.08); /* thin rule like .viewer-wrap border-top */
+    padding-top: 20px;
+}
+
+/* individual memory image */
+.view-memory-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+.view-memory-img:hover { opacity: 0.8; }
+
+/* empty state — matches .modal-desc tone */
+.view-box-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    grid-column: 1 / -1;                 /* spans full width of the grid */
+    padding: 12px 0;
+}
+
+/* item count badge under each saved box card — matches caption-num tone */
+.user-box-count {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    text-align: center;
+    margin-top: 6px;
+}
+
+/* open image only shown on hover over the box card */
+.user-box-open { display: none; }
+.user-box-open.visible { display: block; }
+
+/* responsive — matches the room modal breakpoint */
+@media (max-width: 768px) {
+    .view-box-modal { padding: 40px 28px 36px; }
+    .view-box-modal-header::before { left: 28px; top: 40px; }
+    .view-box-gallery { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+}
+
+/* ---------------------------------------- CREATE BOX MODAL ---------------------------------------- */
+
+.create-box-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10002;
+    transition: opacity 0.3s ease;
+}
+.create-box-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.create-box-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.97);
+    width: min(480px, 90vw);
+    background: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 52px 48px 44px;
+    z-index: 10003;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+}
+.create-box-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.create-box-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 1.6rem;
+    color: rgba(0,0,0,0.35);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.create-box-close:hover { color: rgba(0,0,0,0.8); }
+
+.modal-step-title {
+    font-family: 'Comico', serif;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: rgba(0,0,0,0.85);
+    margin: 0 0 28px;
+}
+
+.modal-step.hidden { display: none; }
+
+/* step 1 — box picker */
+.box-picker {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.box-option {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.box-option:hover  { opacity: 0.75; transform: translateY(-4px); }
+.box-option.selected { opacity: 1; transform: translateY(-4px); }
+
+.box-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* step 2 — name input */
+.box-name-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    padding: 8px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: rgba(0,0,0,0.8);
+    outline: none;
+    margin-bottom: 28px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+.box-name-input:focus { border-color: rgba(0,0,0,0.5); }
+.box-name-input::placeholder { color: rgba(0,0,0,0.25); }
+
+/* step 3 — upload area */
+.upload-area {
+    display: block;
+    border: 1px dashed rgba(0,0,0,0.2);
+    padding: 28px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);
+    margin-bottom: 20px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+.upload-area:hover {
+    border-color: rgba(0,0,0,0.45);
+    color: rgba(0,0,0,0.65);
+}
+
+.upload-previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.memory-thumb {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}
+
+/* next / save button */
+.modal-next-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    padding-bottom: 2px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.modal-next-btn:hover {
+    color: rgba(0,0,0,0.85);
+    border-color: rgba(0,0,0,0.6);
+}
+
+@media (max-width: 768px) {
+    .create-box-modal { padding: 40px 28px 36px; }
+    .box-option { width: 80px; height: 80px; }
+}
+
+

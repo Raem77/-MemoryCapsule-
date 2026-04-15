@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Remember</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="boxes-page">
+
+  <header class="site-header">
+
+    <div class="left-col-1">
+      <p>Resource Web V:</p>
+      <p></p>
+    </div>
+
+    <div class="left-col-2">
+      <p>Final Live Site</p>
+      <p></p>
+    </div>
+
+    <div class="center-col">
+      <h1>{Memory Capsule}</h1>
+    </div>
+
+    <div class="right-col-1">
+      <p>OCADU</p>
+      <p>GRPH 2</p>
+    </div>
+
+
+
+<div class="right-col-2">
+    <button class="about-btn" id="aboutBtn">About</button>
+    <a href="pano.html" class="tiny-planet-link" id="tinyPlanetLink">
+        <canvas id="tinyPlanet" width="90" height="90"></canvas>
+        <span class="tiny-planet-label">My Room</span>
+    </a>
+</div>
+
+  </header>
+
+  <!-- zoom overlay - when box is clicked -->
+  <div class="zoom-overlay" id="zoomOverlay"></div>
+
+  <!-- -----------------------------------ABOUT PANEL--------------------------------------------- -->
+  <div class="about-panel" id="aboutPanel">
+
+    <button class="about-panel-close" id="aboutPanelClose">×</button>
+
+    <div class="about-panel-content">
+
+      <p class="about-panel-name">Box of memories</p>
+
+      <p class="about-panel-statement">
+Memories can be held, revisited, and preserved through the objects we choose to keep.
+
+Over the years, I have collected small fragments of time: photographs, notes, objects, and traces of moments that I did not want to lose. Kept inside boxes, these personal archives became a physical memoir: a way of holding onto experiences, emotions, and details that might otherwise fade.
+
+      </p>
+
+      <p class="about-panel-desc">
+        Point and click simulation *
+      </p>
+
+      <a href="about.html" class="about-panel-more"> more → </a>
+
+    </div>
+  </div>
+
+  <!-- Dim overlay behind the panel — clicking it closes the panel -->
+  <div class="about-overlay" id="aboutOverlay"></div>
+
+
+  <!-- ------------------------------------------------- BOXES ---------------------------------------- -->
+
+  <div class="boxes-container">
+
+    <!-- BOX 1 — fragments -->
+    <div class="box" id="box-fragments" data-href="archive-fragments.html">
+      <div class="box-images">
+
+        <img src="boxes/box1-closed.png" class="box-closed" alt="box closed">
+        <img src="boxes/box1-mid.png"    class="box-mid"    alt="box opening">
+        <img src="boxes/box1-open.png"   class="box-open"   alt="box open">
+
+      </div>
+      <span class="box-label">Fragments</span>
+    </div>
+
+    <!-- BOX 2 — words of affirmation (WOA) -->
+    <div class="box" id="box-words" data-href="archive-words.html">
+      <div class="box-images">
+
+        <img src="boxes/box2-closed.png" class="box-closed" alt="box closed">
+        <img src="boxes/box2-mid.png"    class="box-mid"    alt="box opening">
+        <img src="boxes/box2-open.png"   class="box-open"   alt="box open">
+
+      </div>
+      <span class="box-label">Words of Affirmation</span>
+    </div>
+
+    <!-- BOX 3 — photos -->
+    <div class="box" id="box-photos" data-href="archive-photos.html">
+      <div class="box-images">
+
+        <img src="boxes/box3-closed.png" class="box-closed" alt="box closed">
+        <img src="boxes/box3-mid.png"    class="box-mid"    alt="box opening">
+        <img src="boxes/box3-open.png"   class="box-open"   alt="box open">
+
+      </div>
+      <span class="box-label">Photos</span>
+    </div>
+
+  </div>
+
+  <!-- clicking = scrolls down (not navigate) -->
+
+  <div class="boxes-container boxes-container--scroll">
+
+    <div class="box box--scroll" data-target="fragments-section">
+      <div class="box-images">
+        <img src="boxes/box1-closed.png" class="box-closed" alt="box closed">
+        <img src="boxes/box1-mid.png"    class="box-mid"    alt="box opening">
+        <img src="boxes/box1-open.png"   class="box-open"   alt="box open">
+      </div>
+      <span class="box-label">Fragments</span>
+    </div>
+
+    <div class="box box--scroll" data-target="words-section">
+      <div class="box-images">
+        <img src="boxes/box2-closed.png" class="box-closed" alt="box closed">
+        <img src="boxes/box2-mid.png"    class="box-mid"    alt="box opening">
+        <img src="boxes/box2-open.png"   class="box-open"   alt="box open">
+      </div>
+      <span class="box-label">Words of Affirmation</span>
+    </div>
+
+    <div class="box box--scroll" data-target="photos-section">
+      <div class="box-images">
+        <img src="boxes/box3-closed.png" class="box-closed" alt="box closed">
+        <img src="boxes/box3-mid.png"    class="box-mid"    alt="box opening">
+        <img src="boxes/box3-open.png"   class="box-open"   alt="box open">
+      </div>
+      <span class="box-label">Photos</span>
+    </div>
+
+  </div>
+
+  <!--------------------------------------- intro ------------------------------------>
+
+<section class="intro">
+    <div class="intro-col-1">
+        intro
+    </div>
+    <p class="intro-col-2">What makes certain fragments worth keeping? A photograph, a note, a drawing, or a small object can outlast the moment it belongs to, carrying traces of memory through its physical presence. Gathered over time, these materials form a personal archive shaped by repetition, attachment, and the quiet persistence of nostalgia. Early memories often remain incomplete, filtered through the lens of innocence, imagination, and emotion. Encounter preserved fragments: a digital capsule where the past is held through objects that continue to resist being forgotten.</p>
+  </section>
+
+<!-- ---------------------------------------- USER BOXES SECTION ---------------------------------------- -->
+ 
+<section class="user-boxes-section">
+
+  <div class="user-boxes-header">
+    <h2 class="user-boxes-title">Your capsule</h2>
+    <button class="create-box-btn" id="createBoxBtn">+ Create</button>
+  </div>
+
+  <!-- where user-created boxes render -->
+  <div class="user-boxes-grid" id="userBoxesGrid">
+    <p class="user-boxes-empty" id="userBoxesEmpty">No boxes yet. Create one above.</p>
+  </div>
+
+</section>
+
+<!-- ---------------------------------------- CREATE BOX MODAL ---------------------------------------- -->
+
+<div class="create-box-overlay" id="createBoxOverlay"></div>
+
+<div class="create-box-modal" id="createBoxModal">
+
+  <button class="create-box-close" id="createBoxClose">×</button>
+
+  <!-- STEP 1: pick a box -->
+  <div class="modal-step" id="step1">
+    <h3 class="modal-step-title">Pick a box</h3>
+    <div class="box-picker">
+      <div class="box-option" data-box="1">
+        <img src="boxes/box1-closed.png" alt="box 1">
+      </div>
+      <div class="box-option" data-box="2">
+        <img src="boxes/box2-closed.png" alt="box 2">
+      </div>
+      <div class="box-option" data-box="3">
+        <img src="boxes/box3-closed.png" alt="box 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: name it -->
+  <div class="modal-step hidden" id="step2">
+    <h3 class="modal-step-title">Name your box</h3>
+    <input type="text" class="box-name-input" id="boxNameInput" placeholder="e.g. Summer 2023">
+    <button class="modal-next-btn" id="toStep3">Next →</button>
+  </div>
+
+  <!-- STEP 3: upload images -->
+  <div class="modal-step hidden" id="step3">
+    <h3 class="modal-step-title">Add your memories</h3>
+    <label class="upload-area" id="uploadArea">
+      <span>Click to upload images</span>
+      <input type="file" id="fileInput" accept="image/*" multiple hidden>
+    </label>
+    <div class="upload-previews" id="uploadPreviews"></div>
+    <button class="modal-next-btn" id="saveBox">Save box</button>
+  </div>
+
+</div>
+
+<!------------------------------------------ VIEW BOX MODAL ------------------------------------------>
+
+<div class="view-box-overlay" id="viewBoxOverlay"></div>
+
+<div class="view-box-modal" id="viewBoxModal">
+
+  <button class="view-box-close" id="viewBoxClose">×</button>
+
+  <div class="view-box-modal-header">
+    <img class="view-box-img" id="viewBoxImg" src="" alt="">
+    <h3 class="view-box-title" id="viewBoxTitle"></h3>
+  </div>
+
+  <div class="view-box-gallery" id="viewBoxGallery"></div>
+
+</div>
+
+  <!--------------------------------------- SCROLL sections ------------------------------------>
+
+  <!-- <img> on the left -> <div class="scroll-section-body"> on the right -->
+
+  <!-- f -->
+  <section id="fragments-section" class="scroll-section">
+
+    <img src="boxes/box1-open.png" class="scroll-section-img" alt="fragments box open">
+    <div class="scroll-section-body">
+      <h2 class="scroll-section-title">Fragments</h2>
+      <p class="scroll-section-text">Fragments such as small objects, doodles, receipts, or tiny notes usually do not bring back one clear event, but they still hold emotional traces of a person or period of life. A drawing from childhood, for example, may not recall the exact day it was made, yet it can immediately suggest a school year, a friendship, or a general feeling from that time. These fragments work through association rather than full memory: they connect to an era more than a single moment. Because they are ordinary and often accidental, they feel personal, like leftover evidence that something existed.</p>
+    </div>
+
+    <!-- CHANGED: wrapped in .scroll-section-mini-gallery-wrap so the gallery
+         floats absolutely and never pushes the row down on hover -->
+    <div class="scroll-section-mini-gallery-wrap">
+        <div class="scroll-section-mini-gallery">
+            <img src="sketch/f1.png" alt="">
+            <img src="sketch/f2.png" alt="">
+            <img src="sketch/f3.png" alt="">
+            <img src="sketch/f4.png" alt="">
+            <img src="sketch/f5.png" alt="">
+            <img src="sketch/f6.png" alt="">
+        </div>
+    </div>
+
+    <a href="archive-fragments.html" class="section-open-btn">Open -></a>
+
+  </section>
+
+   <!-- w -->
+  <section id="words-section" class="scroll-section">
+
+    <img src="boxes/box2-open.png" class="scroll-section-img" alt="words box open">
+    <div class="scroll-section-body">
+      <h2 class="scroll-section-title">Words of Affirmation</h2>
+      <p class="scroll-section-text">When someone reads an old letter and instantly thinks of a person, the letter works like a memory cue. Small details such as handwriting, language,materiality, or even the way the page looks can trigger recognition memory, so the brain quickly knows who it is connected to. </p>
+    </div>
+
+    <!-- CHANGED: wrapped in .scroll-section-mini-gallery-wrap -->
+    <div class="scroll-section-mini-gallery-wrap">
+        <div class="scroll-section-mini-gallery">
+            <img src="sketch/w1.png" alt="">
+            <img src="sketch/w2.png" alt="">
+            <img src="sketch/w3.png" alt="">
+            <img src="sketch/w4.png" alt="">
+            <img src="sketch/w5.png" alt="">
+            <img src="sketch/w6.png" alt="">
+        </div>
+    </div>
+
+    <a href="archive-words.html" class="section-open-btn">Open -></a>
+
+  </section>
+
+   <!-- p -->
+  <section id="photos-section" class="scroll-section">
+
+    <img src="boxes/box3-open.png" class="scroll-section-img" alt="photos box open">
+    <div class="scroll-section-body">
+      <h2 class="scroll-section-title">Photos</h2>
+      <p class="scroll-section-text">Photos often create strong emotional connections because they capture a visible moment that feels fixed, even if the full story behind it is forgotten. Sometimes a photo of a person you do not fully know can still feel familiar because the image suggests a relationship, a time period, or a mood that connects to your own experiences. Psychologists explain that photos often feel stronger than other objects because they preserve detail exactly, so the brain has more cues to work with when rebuilding memory.</p>
+    </div>
+
+    <!-- CHANGED: wrapped in .scroll-section-mini-gallery-wrap -->
+    <div class="scroll-section-mini-gallery-wrap">
+        <div class="scroll-section-mini-gallery">
+            <img src="sketch/p1.png" alt="">
+            <img src="sketch/p2.png" alt="">
+            <img src="sketch/p3.png" alt="">
+            <img src="sketch/p4.png" alt="">
+            <img src="sketch/p5.png" alt="">
+        </div>
+    </div>
+
+    <a href="archive-photos.html" class="section-open-btn">Open -></a>
+
+  </section>
+
+  </section>
+
+  <script>
+
+///////////////////////-------------------- BOX ZOOM -------------------////////////////////////
+
+const boxes = document.querySelectorAll('.box');
+const zoomOverlay = document.getElementById('zoomOverlay');
+
+boxes.forEach(box => {
+
+  box.addEventListener('click', function () {
+    const destination = this.dataset.href;
+
+    // if no data-href, this is a scroll box (skip zoom)
+    if (!destination) return;
+
+    const rect = this.getBoundingClientRect();
+    const centerX = rect.left + rect.width  / 2;
+    const centerY = rect.top  + rect.height / 2;
+
+    zoomOverlay.style.transformOrigin = `${centerX}px ${centerY}px`;
+    zoomOverlay.classList.add('zooming');
+    zoomOverlay.addEventListener('animationend', () => {
+      window.location.href = destination;
+    }, { once: true });
+
+  });
+});
+
+// scroll boxes —>click = scrolls to their section
+const scrollBoxes = document.querySelectorAll('.box--scroll');
+
+scrollBoxes.forEach(box => {
+  box.addEventListener('click', function () {
+    const targetId = this.dataset.target;
+    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+
+    ///////////////////---------------------- ABOUT PANEL -------------------//////////////////////
+    const aboutBtn        = document.getElementById('aboutBtn');
+    const aboutPanel      = document.getElementById('aboutPanel');
+    const aboutPanelClose = document.getElementById('aboutPanelClose');
+    const aboutOverlay    = document.getElementById('aboutOverlay');
+
+    function openPanel() {
+      aboutPanel.classList.add('open');
+      aboutOverlay.classList.add('active');
+    }
+
+    function closePanel() {
+      aboutPanel.classList.remove('open');
+      aboutOverlay.classList.remove('active');
+    }
+
+    aboutBtn.addEventListener('click', openPanel);
+    aboutPanelClose.addEventListener('click', closePanel);
+    aboutOverlay.addEventListener('click', closePanel);
+  </script>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

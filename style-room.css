@@ -1,0 +1,473 @@
+
+    /* ------------------------------- RESET ------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+    /* -------------------------------- BASE ----------------------------- */
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: white;
+      color: #000;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+
+    /* Comico font stack (loaded via @font-face on main site) */
+    .comico { font-family: 'Comico', serif; font-weight: normal; }
+
+
+
+
+    /* -------------------------------------- BACK BUTTON --------------------------- */
+    .back-btn {
+      position: fixed;
+      top: 24px;
+      left: 28px;
+      z-index: 15001;
+      font-family: 'Comico', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .back-btn:hover { color: rgba(0,0,0,0.75); }
+    body.modal-open .back-btn { opacity: 0; pointer-events: none; }
+
+
+
+
+    /* ------------------------------ HEADER ------------------------------------------ */
+    .site-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 8fr 1fr 1fr;
+      align-items: center;
+      gap: 0 10px;
+      padding: 88px 70px 48px;
+      width: 100%;
+    }
+    .left-col-1  { text-align: right; }
+    .left-col-2  { text-align: right; }
+    .center-col  { text-align: center; }
+    .right-col-1 { text-align: left; }
+    .right-col-2 { text-align: left; }
+
+
+    .center-col h1 {
+      font-family: 'Comico', serif;
+      font-size: 80px;
+      font-weight: normal;
+      margin: 0 0 10px;
+    }
+    .left-col-1 p, .left-col-2 p,
+    .right-col-1 p, .right-col-2 p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #706f6f;
+      margin: 0;
+    }
+
+
+
+
+    /* ------------------------ progression bars ------------------------ */
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 0 32px;
+    }
+    .step-pip {
+      width: 24px;
+      height: 2px;
+      background: rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+    .step-pip.active { background: rgba(0,0,0,0.75); }
+
+
+
+
+    /* ------------------ VIEWER WRAPPER ------------------------------------- */
+    .viewer-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid #7b7b7b;
+    }
+
+
+    .viewer {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #f5f3f0;
+    }
+
+
+
+
+    /* ----------------------------------- SCENES ------------------------------------ */
+    .scene {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.7s ease;
+    }
+    .scene.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+
+    /* photo inside a scene */
+    .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 14s ease-out;
+      transform: scale(1.03);
+    }
+    .scene.active img { transform: scale(1.0); }
+
+
+    /* placeholder shown when no photo is added yet */
+    .scene-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #eeebe5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: rgba(0,0,0,0.25);
+    }
+    .scene-placeholder svg   { opacity: 0.4; }
+    .scene-placeholder span  {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+
+
+
+    /* ------------------- HOTSPOT — navigation dot (pulsing ring) --------------------- */
+    .hotspot-nav {
+      position: absolute;
+      z-index: 15;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .hotspot-nav .ring {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.3);
+      animation: pulse-ring 2.4s ease-out infinite;
+    }
+    .hotspot-nav .ring:nth-child(2) { animation-delay: 0.9s; }
+    .hotspot-nav .core {
+      width: 8px;
+      height: 8px;
+      background: #000;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s ease;
+    }
+    .hotspot-nav:hover .core { transform: scale(1.6); }
+
+
+    @keyframes pulse-ring {
+      0%   { transform: scale(0.5); opacity: 0.6; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+
+
+
+
+    /* --------------------------------------- HOTSPOT — item dot (furniture / object) ------------------------------- */
+    .hotspot-item {
+      position: absolute;
+      z-index: 15;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .hotspot-item .i-core {
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgba(0,0,0,0.55);
+      border-radius: 50%;
+      background: white;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hotspot-item:hover .i-core {
+      background: #000;
+      transform: scale(1.4);
+    }
+    .hotspot-item .i-label {
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+      white-space: nowrap;
+      background: rgba(255,255,255,0.85);
+      padding: 2px 6px;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    .hotspot-item:hover .i-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+
+    /* ----------------- scene info ------------------------------- */
+    .scene-tag {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      z-index: 20;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
+
+
+
+
+    /* --------------------- CAPTION (below viewer) --------------------------------- */
+    .viewer-caption {
+      display: grid;
+      grid-template-columns: 1fr 2fr 4fr;
+      gap: 40px;
+      padding: 28px 0 80px;
+      align-items: start;
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+    .caption-num {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+    .caption-title {
+      font-family: 'Comico', serif;
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: rgba(0,0,0,0.8);
+    }
+    .caption-hint {
+      font-size: 12px;
+      color: rgba(0,0,0,0.4);
+      line-height: 1.8;
+    }
+    /* hollow dot = navigate */
+    .caption-hint span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border: 1px solid rgba(0,0,0,0.4);
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    /* filled dot = click to open */
+    .caption-hint strong {
+      width: 8px;
+      height: 8px;
+      background: #000;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+
+
+
+    /* --------------------------------- MODAL (overlay) --------------------------*/
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.15);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10002;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+
+
+
+    /* <!-- ---------------------------------------- MODAL ---------------------------------------- --> */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.97);
+      width: 480px;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 52px 48px 44px;
+      z-index: 10003;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-sizing: border-box;
+    }
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: 1.6rem;
+      color: rgba(0,0,0,0.35);
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+    .modal-close:hover { color: rgba(0,0,0,0.8); }
+
+
+    .modal-tag {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-bottom: 14px;
+    }
+    .modal-title {
+      font-family: 'Comico', serif;
+      font-size: 1.6rem;
+      font-weight: normal;
+      color: rgba(0,0,0,0.85);
+      margin-bottom: 14px;
+    }
+    .modal-desc {
+      font-size: 13px;
+      color: rgba(0,0,0,0.5);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .modal-link {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      padding-bottom: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .modal-link:hover {
+      color: rgba(0,0,0,0.9);
+      border-color: rgba(0,0,0,0.7);
+    }
+
+
+
+
+    /* ---------------------------------------- INTRO ---------------------------------------- */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 50000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.7s ease;
+    }
+    #intro-screen.gone {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #intro-screen h2 {
+      font-family: 'Comico', serif;
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: normal;
+      color: rgba(0,0,0,0.85);
+    }
+    #intro-screen p {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+    }
+    #enter-btn {
+      margin-top: 16px;
+      background: none;
+      border: 1px solid rgba(0,0,0,0.2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.45);
+      padding: 12px 32px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #enter-btn:hover {
+      color: rgba(0,0,0,0.85);
+      border-color: rgba(0,0,0,0.6);
+    }
+
+
+
+
+    /* ------------ RESPONSIVE -------------- */
+    @media (max-width: 768px) {
+      .site-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 48px 24px 32px;
+        gap: 12px;
+      }
+      .left-col-1, .left-col-2,
+      .right-col-1, .right-col-2 { display: none; }
+      .center-col h1   { font-size: 48px; }
+      .viewer-wrap     { padding: 0 16px; }
+      .viewer-caption  { grid-template-columns: 1fr; gap: 12px; }
+      .modal           { width: 90vw; padding: 40px 28px 36px; }
+      .back-btn        { font-size: 0.75rem; }
+    }
+
+

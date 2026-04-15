@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>My Room — Memory Capsule</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+</head>
+
+<link rel="stylesheet" href="style-room.css">
+<script src="script-room.js"></script>
+
+<body>
+
+
+  <!-- ---------------------------------------- INTRO SCREEN ---------------------------------------- -->
+
+  <div id="intro-screen">
+    <h2>My Room</h2>
+    <p>Five scenes — six eggs</p>  <!-- ← change this line -->
+    <button id="enter-btn" onclick="enterRoom()">Enter →</button>
+  </div>
+
+
+  <!-- BACK BUTTON — links back to main page -->
+  <a href="boxes.html" class="back-btn">← Back</a>
+
+
+  <!-- ---------------------------------------- HEADER ---------------------------------------- -->
+
+  <header class="site-header">
+
+    <div class="left-col-1">
+      <p>room</p>   <!-- ← change -->
+      <p>tour</p>   <!-- ← change -->
+    </div>
+
+    <div class="left-col-2">
+      <p>2026</p>   <!-- ← change -->
+      <p>memory</p> <!-- ← change -->
+    </div>
+
+    <div class="center-col">
+      <h1 class="comico">{My Room}</h1>  <!-- ← change page title -->
+    </div>
+
+    <div class="right-col-1">
+      <p>OCADU</p>  <!-- ← change -->
+      <p>GRPH 2</p> <!-- ← change -->
+    </div>
+
+    <div class="right-col-2">
+      <p>5 positions</p>   <!-- ← change -->
+      <p>6 eggs</p> <!-- ← change -->
+    </div>
+
+  </header>
+
+
+  <!-- ---------------------------------------- STEP PIPS ---------------------------------------- -->
+  <!-- One pip per scene — add/remove .step-pip divs -->
+
+  <div class="step-indicator" id="stepIndicator">
+    <div class="step-pip active" onclick="goTo(0)"></div>
+    <div class="step-pip"        onclick="goTo(1)"></div>
+    <div class="step-pip"        onclick="goTo(2)"></div>
+    <div class="step-pip"        onclick="goTo(3)"></div>
+    <div class="step-pip"        onclick="goTo(4)"></div>
+  </div>
+
+
+  <!-- ---------------------------------------- VIEWER ---------------------------------------- -->
+
+  <div class="viewer-wrap">
+    <div class="viewer" id="viewer">
+
+
+      <!-- SCENE 1 — enter -->
+     
+<div class="scene active" id="scene-0">
+
+  <img src="room/Final/1.jpg" alt="description" />
+
+  <!-- Nav dot → scene 2 -->
+  <div class="hotspot-nav" style="left:30%;top:80%;" onclick="goTo(1)">
+    <div class="ring"></div><div class="ring"></div><div class="core"></div>
+  </div>
+
+</div>   
+
+
+      <!-- SCENE 2 — zoom -->
+      <div class="scene" id="scene-1">
+
+        <img src="room/Final/2.jpg" alt="description" />
+         
+        <!-- Nav dot ← scene 1 -->
+        <div class="hotspot-nav" style="right:3%;top:50%;" onclick="goTo(0)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+        <!-- Nav dot → scene 3 -->
+        <div class="hotspot-nav" style="right:43%;top:70%;" onclick="goTo(2)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+      </div>
+
+
+      <!-- SCENE 3 — zoomed -->
+      <div class="scene" id="scene-2">
+
+        <img src="room/Final/3.jpg" alt="description" />
+
+        <!-- Object hotspot: Window -->
+        <div class="hotspot-item" style="left:50%;top:38%;" onclick="openModal('window')">
+          <div class="i-core"></div>
+          <span class="i-label">Window</span>
+        </div>
+
+        <div class="hotspot-nav" style="left:28%;top:60%;" onclick="goTo(3)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+        <div class="hotspot-nav" style="right:17%;top:61%;" onclick="goTo(4)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+        <div class="hotspot-nav" style="right:47%;top:90%;" onclick="goTo(2)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+      </div>
+
+
+      <!-- SCENE 4 — bed -->
+      <div class="scene" id="scene-3">
+
+        <img src="room/Final/4-bed.jpg" alt="description" />
+
+        <!-- link: story -->
+        <div class="hotspot-item" style="left:42%;top:51%;" onclick="openModal('easel')">
+          <div class="i-core"></div>
+          <span class="i-label">Bedtime soty?</span>
+        </div>
+
+        <div class="hotspot-nav" style="left:4%;top:58%;" onclick="goTo(2)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+        <div class="hotspot-nav" style="right:2%;top:92%;" onclick="goTo(4)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+      </div>
+
+
+      <!-- SCENE 5 — desk -->
+      <div class="scene" id="scene-4">
+
+        <img src="room/Final/4-desk.jpg" alt="description" />
+
+        <!-- link: Wall Photos (second angle) -->
+        <div class="hotspot-item" style="left:60%;top:28%;" onclick="openModal('wall')">
+          <div class="i-core"></div>
+          <span class="i-label">Wall Photos</span>
+        </div>
+
+        <!-- link: window -->
+        <div class="hotspot-item" style="left:20%;top:28%;" onclick="openModal('wall')">
+          <div class="i-core"></div>
+          <span class="i-label">view?</span>
+        </div>
+
+        <!-- link: window -->
+        <div class="hotspot-item" style="left:62%;top:63%;" onclick="openModal('wall')">
+          <div class="i-core"></div>
+          <span class="i-label">"GG"</span>
+        </div>
+
+        <div class="hotspot-nav" style="left:3%;top:82%;" onclick="goTo(2)">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+        <!-- Nav dot → loops back to entry -->
+        <div class="hotspot-nav" style="right:2%;bottom:20%;" onclick="goTo(0)" title="Return to start">
+          <div class="ring"></div><div class="ring"></div><div class="core"></div>
+        </div>
+
+      </div>
+
+
+      <!-- Scene position tag — updated by JS -->
+      <div class="scene-tag" id="sceneTag">Scene 1 of 5</div>
+
+
+    </div>
+
+
+    <!-- Caption row — updated by JS -->
+    <div class="viewer-caption">
+      <div class="caption-num"   id="captionNum">01</div>
+      <div class="caption-title comico" id="captionTitle">Welcome</div>
+      <div class="caption-hint">
+        <span></span> click &nbsp;·&nbsp;
+        <strong></strong> Explore
+      </div>
+    </div>
+
+  </div><!-- /viewer-wrap -->
+
+
+  <!-- ---------------------------------------- MODAL ---------------------------------------- -->
+  <!-- Dim overlay — clicking it closes the modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)"></div>
+
+  <!-- Modal card — content filled by JS from the `items` object below -->
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-tag"   id="modalTag">Object</div>
+    <h2  class="modal-title comico" id="modalTitle">—</h2>
+    <p   class="modal-desc"  id="modalDesc">—</p>
+    <a   class="modal-link"  id="modalLink" href="#" target="_blank" rel="noopener">Open link →</a>
+  </div>
+
+</body>
+</html>

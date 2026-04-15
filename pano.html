@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Room</title>
+
+  <!-- pannellum — 360° panorama viewer library (loaded from CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+
+  <link rel="stylesheet" href="pano-style.css">
+
+</head>
+
+<body>
+
+  <!-- ---------------------------------------- PANORAMA VIEWER ---------------------------------------- -->
+  <!-- pannellum mounts unto div and renders the full 360° view -->
+
+  <div id="panorama"></div>
+
+  <!-- loading -->
+<div id="pano-loader"></div>
+
+  <!-- ---------------------------------------- LINK MODAL ---------------------------------------- -->
+  <!-- = when a link hotspot is clicked -->
+  <!-- + preview of the destination site + a Continue button to open it in a new tab -->
+
+  <!-- dim background behind the modal — clicking it also closes the modal -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <div class="link-modal" id="linkModal">
+
+    <button class="modal-close" id="modalClose">×</button>
+
+    <!-- site name and URL shown at the top of the modal -->
+    <div class="modal-header">
+      <span class="modal-site-label" id="modalLabel">descover</span>
+      <span class="modal-site-url"   id="modalUrl">https://</span>
+    </div>
+
+    <!-- iframe previews live -->
+    <!-- if the site blocks iframes (X-Frame-Options / CSP), the fallback message shows instead -->
+    <div class="modal-preview">
+      <iframe id="modalFrame" src="" title="Website preview" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+      <div class="modal-preview-fallback" id="modalFallback">
+        <p class="fallback-msg">Preview unavailable for this site.</p>
+        <p class="fallback-sub">Click Continue to open it in a new tab.</p>
+      </div>
+    </div>
+
+    <!-- Continue button — opens the link in a new browser tab -->
+    <div class="modal-footer">
+      <button class="modal-continue" id="modalContinue">Continue -></button>
+    </div>
+
+  </div>
+
+<a href="index.html" class="tiny-planet-link">
+    <div id="tinyPlanet"></div>
+    <span class="tiny-planet-label">Memory Capsule</span>
+  </a>
+
+  <!-- WELCOME MODAL POP  -->
+  <div class="modal-overlay" id="welcomeOverlay"></div>
+
+  <div class="link-modal" id="welcomeModal">
+    <button class="modal-close" id="welcomeClose">×</button>
+    <div class="modal-header">
+      <span class="modal-site-label">My Room</span>
+      <span class="modal-site-url">360° Panoramic View</span>
+    </div>
+    <div class="welcome-body">
+      <p class="welcome-desc">
+        “But on your tiny planet, my little prince, all you need do is move your chair a few steps. You can see the day end and the twilight falling whenever you like...<br>
+        - Look around — click the sparkle hotspots to explore.
+      </p>
+    <div class="welcome-hint">
+        <img src="buttons/sparkle.png" class="welcome-hint-img" alt="">
+        <span class="welcome-hint-text">Look around — click the sparkle hotspots to explore.</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-continue" id="welcomeEnter">Enter -></button>
+    </div>
+  </div>
+
+  <!-- Pannellum JS — must be loaded before pano-script.js -->
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <script src="pano-script.js"></script>
+
+</body>
+
+</html>
